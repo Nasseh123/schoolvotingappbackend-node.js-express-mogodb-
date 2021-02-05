@@ -2,7 +2,7 @@ const db = require("../models");
 
 const Position = db.positions
 
-checkForExistingPostion = (req, res) => {
+checkForExistingPostion = (req, res,next) => {
     // Postion
     Position.findOne({
         name:req.body.name

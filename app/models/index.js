@@ -11,6 +11,7 @@ db.url = dbConfig.url;
 db.user = require("./user.model");
 db.role = require("./role.model");
 db.positions = require("./positions.model");
+db.candidate=require("./candidates.model")
 
 db.ROLES = ["user","student", "admin"];
 
