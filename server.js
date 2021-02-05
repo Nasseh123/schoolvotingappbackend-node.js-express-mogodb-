@@ -58,6 +58,8 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
+    }else{
+      console.log(`Count is ${count}.ROles already exist in database`);
     }
   });
 }
@@ -77,6 +79,7 @@ app.get("/", (req, res) => {
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/position.routes')(app)
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

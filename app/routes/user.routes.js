@@ -1,6 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
-
+const controller2 = require("../controllers/position.controller");
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -9,7 +9,7 @@ module.exports = function(app) {
     );
     next();
   });
-
+  app.get("/api/positions", controller2.getPostion);
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
