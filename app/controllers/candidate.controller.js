@@ -8,25 +8,27 @@ const Candidate=db.candidate;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-exports.getPostion = (req, res) => {
-    Position.find()
-    .exec((err, position)=>{
+exports.getCandidates = (req, res) => {
+    Candidate.find()
+    .populate(['user', 'position'])
+    .exec((err, candidate)=>{
         if(err){
             res.status(500).send({message:err});
         }
-        pos=position.map(pos=>{
+        cand=candidate.map(pos=>{
             return pos;
         })
-        res.status(200).send({positionname:pos.name})
+        res.status(200).send({candidate:cand})
     })
 }
 exports.createCandidate = (req, res) => {
     console.log('here')
-    const position = new Candidate({
-        name:req.body.name
+    const candidate = new Candidate({
+        user:req.body.user,
+        position:req.body.position
     })
-    console.log(position)
-    position.save((err, position)=>{
+    console.log(candidate)
+    candidate.save((err, position)=>{
         if(err){
             res.status(500).send({message:err});
         }
@@ -34,7 +36,7 @@ exports.createCandidate = (req, res) => {
             if(err){
                 res.status(500).send({message:err});
             }
-            res.status(200).send({message:'Position created successfully'})
+            res.status(200).send({message:'Candidate created successfully'})
 
         })
        

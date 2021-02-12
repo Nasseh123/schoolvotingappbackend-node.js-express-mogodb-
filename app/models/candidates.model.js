@@ -3,19 +3,23 @@ const mongoose = require("mongoose");
 const Candidate = mongoose.model(
   "Candidate",
   new mongoose.Schema({
-    user:[
+    user:
         {
             type:mongoose.Schema.Types.ObjectID,
             ref:"User"
         }
-    ],
+    ,
     points:Number,
-    position: [
+    position: 
         {
             type:mongoose.Schema.Types.ObjectID,
-            ref:"Position"
+            ref:"Positions"
         }
-    ]
+    ,
+    status:{
+      type:Boolean,
+      default:true,
+    },
   })
 );
 

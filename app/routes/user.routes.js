@@ -9,7 +9,7 @@ module.exports = function(app) {
     );
     next();
   });
-  app.get("/api/positions", controller2.getPostion);
+  // app.get("/api/positions", controller2.getPostion);
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);

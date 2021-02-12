@@ -16,7 +16,7 @@ exports.getPostion = (req, res) => {
         pos=position.map(pos=>{
             return pos;
         })
-        res.status(200).send({positionname:pos.name})
+        res.status(200).send({positionname:pos})
     })
 }
 exports.createPosition = (req, res) => {
