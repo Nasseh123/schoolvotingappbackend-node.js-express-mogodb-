@@ -9,6 +9,13 @@ module.exports = function(app) {
     );
     next();
   });
+// KCA.AC.KE
+
+// POST
+// GET
+// PUT
+// PATCH
+// DELETE
 
   app.post(
     "/api/auth/signup",

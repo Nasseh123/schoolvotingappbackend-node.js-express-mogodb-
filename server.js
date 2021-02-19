@@ -5,8 +5,10 @@ const cors = require("cors"); //Express middleware to enable CORS with various o
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8081",
+  optionsSuccessStatus: 200 
 };
+// API'S -- IP
 
 const db = require("./app/models");
 const Role = db.role;
@@ -71,6 +73,8 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//KCA.AC.KE 
 
 // simple route
 app.get("/", (req, res) => {
