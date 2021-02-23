@@ -23,23 +23,30 @@ exports.getCandidates = (req, res) => {
 }
 exports.createCandidate = (req, res) => {
     console.log('here')
-    const candidate = new Candidate({
-        user:req.body.user,
-        position:req.body.position
-    })
-    console.log(candidate)
-    candidate.save((err, position)=>{
-        if(err){
-            res.status(500).send({message:err});
-        }
-        position.save((err)=>{
-            if(err){
-                res.status(500).send({message:err});
-            }
-            res.status(200).send({message:'Candidate created successfully'})
-
+    let respons=[]
+    for (let i = 0 ; i<req.body.user.length ;i++) {
+        const candidate = new Candidate({
+            user:req.body.user[i],
+            position:req.body.position
         })
-       
-    })
+        candidate.save((err, candidate)=>{
+            if(err){
+                respons[i]= err
+                // res.status(500).send({message:err});
+            }
+            candidate.save((err)=>{
+                if(err){
+                    respons[i]= err
+                    res.status(500).send({message:err});
+                }
+                respons[i]= {message:'Candidate created successfully'}
+                // res.status(200).send({message:'Candidate created successfully'})
+    
+            })
+           
+        })
+    }
+    res.send(respons)
+   
 }
 ;

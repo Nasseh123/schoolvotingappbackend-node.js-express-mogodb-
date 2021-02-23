@@ -9,7 +9,10 @@ const Candidate = mongoose.model(
             ref:"User"
         }
     ,
-    points:Number,
+    points:{
+      type:Number,
+      default:0
+    },
     position: 
         {
             type:mongoose.Schema.Types.ObjectID,

@@ -13,7 +13,7 @@ checkForExistingPostion = (req, res,next) => {
             return;
         }
         if(position){
-            res.status(400).send({ message: "Failed!Position already created!" });
+            res.status(400).send({ message: "Failed!Position already created/exists!" });
             return;
         }
         if(!position){

@@ -105,6 +105,18 @@ exports.signin = (req, res) => {
     });
 };
 
-
+exports.getusers = (req, res) => {
+  User.find()
+  .populate("roles","__v")
+  .exec((err, user)=>{
+      if(err){
+          res.status(500).send({message:err});
+      }
+      user=user.map(pos=>{
+          return pos;
+      })
+      res.status(200).send({user:user})
+  })
+}
 // 9616353255
 // ICT1204B
