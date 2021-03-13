@@ -6,6 +6,11 @@ const User = mongoose.model(
     username: String,
     email: String,
     password: String,
+    imageUrl:String,
+    votingStatus:{
+      type:Boolean,
+      default: true
+    },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
