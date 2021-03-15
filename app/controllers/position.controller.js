@@ -8,7 +8,9 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.getPostion = (req, res) => {
-    Position.find()
+    Position.find({
+        // 'status':true
+    })
     .exec((err, position)=>{
         if(err){
             res.status(500).send({message:err});
@@ -21,10 +23,32 @@ exports.getPostion = (req, res) => {
 }
 exports.createPosition = (req, res) => {
     console.log('here')
+    studentId = Role.find({
+        'name':'student'
+    }).exec((err, student)=>{
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+          console.log(`THE STUDENT IS `);
+          console.log(student[0]);
+    
+    console.log(student[0]._id);
+    numberOfStudentUsers=User.countDocuments({
+        'roles':student[0]._id
+    },(err,countdoc)=>{
+        console.log(countdoc);
+    
+    console.log('THE COINT IS');
+    // console.log(numberOfStudentUsers);
+
     const position = new Position({
-        name:req.body.name
+        name:req.body.name,
+        noOfUsers:countdoc,
+        noUsersVoted:0
     })
-    console.log(position)
+
+
     position.save((err, position)=>{
         if(err){
             res.status(500).send({message:err});
@@ -33,10 +57,12 @@ exports.createPosition = (req, res) => {
             if(err){
                 res.status(500).send({message:err});
             }
-            res.status(200).send({message:'Position created successfully'})
+            res.status(200).send({message:'Position created successfully','token':req.headers["x-access-token"]})
 
         })
        
     })
+})
+})
 }
 ;

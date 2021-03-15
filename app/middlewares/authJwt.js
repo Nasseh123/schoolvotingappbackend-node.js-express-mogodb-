@@ -6,7 +6,7 @@ const Role = db.role;
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
-
+  console.log(token);
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
@@ -52,7 +52,10 @@ isAdmin = (req, res, next) => {
 };
 
 isStudent = (req, res, next) => {
+  console.log('USSSSERID');
+  console.log(req.userId);
   User.findById(req.userId).exec((err, user) => {
+    
     if (err) {
       res.status(500).send({ message: err });
       return;

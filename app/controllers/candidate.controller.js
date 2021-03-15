@@ -11,6 +11,7 @@ var bcrypt = require("bcryptjs");
 exports.getCandidates = (req, res) => {
     Candidate.find()
     .populate(['user', 'position'])
+    .sort( { points: -1 } )
     .exec((err, candidate)=>{
         if(err){
             res.status(500).send({message:err});

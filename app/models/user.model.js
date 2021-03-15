@@ -9,7 +9,7 @@ const User = mongoose.model(
     imageUrl:String,
     votingStatus:{
       type:Boolean,
-      default: true
+      default: false
     },
     roles: [
       {

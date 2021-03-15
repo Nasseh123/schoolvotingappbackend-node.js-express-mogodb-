@@ -1,4 +1,4 @@
-const { authJwt ,verifyCandidate} = require("../middlewares");
+const { authJwt ,verifySignUp,verifyCandidate} = require("../middlewares");
 const candidateController = require("../controllers/candidate.controller");
 const votingController = require("../controllers/vote.controller")
 module.exports = function(app) {
@@ -15,6 +15,6 @@ module.exports = function(app) {
   // app.post("/api/new/candidate",[authJwt.verifyToken,authJwt.isAdmin,verifyCandidate.checkForExistingUserandSamePostion],candidateController.createCandidate);
   app.post("/api/new/candidate",[verifyCandidate.checkForExistingUserandSamePostion],candidateController.createCandidate);
 
-  app.post("/api/vote/new-vote",[],votingController.newVote);
+  app.post("/api/vote/new-vote",[authJwt.verifyToken,authJwt.isStudent],votingController.newVote);
 
 };
