@@ -65,4 +65,19 @@ exports.createPosition = (req, res) => {
 })
 })
 }
+exports.updateStatus = (req,res)=>{
+    Position.updateOne(
+        { _id: req.body._id }, // Filter
+        { $set: { status: req.body.status } }, // Update
+        { upsert: true } // add document with req.body._id if not exists
+      )
+        .then((obj) => {
+           return res.status(200).send({'message':"Updated Position Status."});
+         
+          
+        })
+        .catch((err) => {
+            res.status(500).send({"error":err});
+        });
+}
 ;

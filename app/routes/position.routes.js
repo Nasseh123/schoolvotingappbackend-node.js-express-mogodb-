@@ -15,4 +15,6 @@ module.exports = function(app) {
   // app.post("/api/new/positions",[authJwt.verifyToken,authJwt.isAdmin,verifyPosition.checkForExistingPostion],controller.createPosition);
   app.post("/api/new/positions",[verifyPosition.checkForExistingPostion],controller.createPosition);
 
+  app.post("/api/update-status/positions",[],controller.updateStatus);
+
 };
