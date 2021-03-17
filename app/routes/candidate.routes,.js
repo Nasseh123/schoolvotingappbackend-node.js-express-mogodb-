@@ -13,6 +13,6 @@ module.exports = function(app) {
 
   // app.post("/api/new/candidate",[authJwt.verifyToken,authJwt.isAdmin,verifyCandidate.checkForExistingUserandSamePostion],candidateController.createCandidate);
   app.post("/api/new/candidate",[verifyCandidate.checkForExistingUserandSamePostion],candidateController.createCandidate);
-
+app.post("/api/delete/candidate",[],candidateController.deleteCandidate);
 
 };

@@ -9,7 +9,20 @@ var bcrypt = require("bcryptjs");
 
 exports.getPostion = (req, res) => {
     Position.find({
-        // 'status':true
+        'status':true
+    })
+    .exec((err, position)=>{
+        if(err){
+            res.status(500).send({message:err});
+        }
+        pos=position.map(pos=>{
+            return pos;
+        })
+        res.status(200).send({positions:pos})
+    })
+}
+exports.explicitgetPostion = (req, res) => {
+    Position.find({
     })
     .exec((err, position)=>{
         if(err){
@@ -79,5 +92,18 @@ exports.updateStatus = (req,res)=>{
         .catch((err) => {
             res.status(500).send({"error":err});
         });
-}
-;
+};
+
+exports.deletePosition= (req, res)=>{
+    console.log(req.body);
+    Position.deleteOne({ _id: req.body._id },(err,deletedres)=>{
+        if (err){
+            res.status(500).send({message:err});
+        }else{
+            console.log(deletedres);
+            res.status(200).send({'message':"Postion  Deleted Succesfully."});
+        }
+    })
+           
+         
+};

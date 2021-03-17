@@ -10,7 +10,7 @@ var bcrypt = require("bcryptjs");
 
 exports.getCandidates = (req, res) => {
     Candidate.find()
-    .populate(['user', 'position'])
+    .populate(['user', 'position','roles'])
     .sort( { points: -1 } )
     .exec((err, candidate)=>{
         if(err){
@@ -49,5 +49,17 @@ exports.createCandidate = (req, res) => {
     }
     res.send(respons)
    
-}
-;
+};
+exports.deleteCandidate= (req, res)=>{
+    console.log(req.body);
+    Candidate.deleteOne({ _id: req.body._id },(err,deletedres)=>{
+        if (err){
+            res.status(500).send({message:err});
+        }else{
+            console.log(deletedres);
+            res.status(200).send({'message':"Candidate removed Succesfully."});
+        }
+    })
+           
+         
+};

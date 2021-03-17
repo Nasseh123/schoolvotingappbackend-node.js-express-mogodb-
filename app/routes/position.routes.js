@@ -10,11 +10,12 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/positions", controller.getPostion);
-
+  app.get("/api/positions", controller.getPostion)
+  app.get("/api/explicitpositions/", controller.explicitgetPostion)
   // app.post("/api/new/positions",[authJwt.verifyToken,authJwt.isAdmin,verifyPosition.checkForExistingPostion],controller.createPosition);
   app.post("/api/new/positions",[verifyPosition.checkForExistingPostion],controller.createPosition);
 
   app.post("/api/update-status/positions",[],controller.updateStatus);
+  app.post("/api/delete-position",[],controller.deletePosition);
 
 };

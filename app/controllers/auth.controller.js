@@ -109,7 +109,7 @@ exports.signin = (req, res) => {
 
 exports.getusers = (req, res) => {
   User.find()
-  .populate("roles","__v")
+  .populate("roles")
   .exec((err, user)=>{
       if(err){
           res.status(500).send({message:err});
