@@ -5,7 +5,7 @@ const cors = require("cors"); //Express middleware to enable CORS with various o
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8082",
+  origin: "http://localhost:4200",
   optionsSuccessStatus: 200 
 };
 // API'S -- IP
@@ -87,6 +87,7 @@ require('./app/routes/position.routes')(app)
 require('./app/routes/candidate.routes,')(app)
 require('./app/routes/voting.routes')(app)
 
+require('./app/routes/studentclass.routes')(app)
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

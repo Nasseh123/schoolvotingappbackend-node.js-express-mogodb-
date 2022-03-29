@@ -18,7 +18,8 @@ const Candidate = mongoose.model(
             type:mongoose.Schema.Types.ObjectID,
             ref:"Positions"
         }
-    ,
+
+,
     status:{
       type:Boolean,
       default:true,

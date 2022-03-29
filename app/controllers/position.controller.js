@@ -21,6 +21,23 @@ exports.getPostion = (req, res) => {
         res.status(200).send({positions:pos})
     })
 }
+
+exports.getspecPostion = (req, res) => {
+    Position.find({
+        'status':true,
+        'studentclass':[req.body.class,null]
+    })
+    .exec((err, position)=>{
+        if(err){
+            res.status(500).send({message:err});
+        }
+        pos=position.map(pos=>{
+            return pos;
+        })
+        res.status(200).send({positions:pos})
+    })
+}
+
 exports.explicitgetPostion = (req, res) => {
     Position.find({
     })
@@ -47,18 +64,35 @@ exports.createPosition = (req, res) => {
           console.log(student[0]);
     
     console.log(student[0]._id);
-    numberOfStudentUsers=User.countDocuments({
-        'roles':student[0]._id
-    },(err,countdoc)=>{
+    if(req.body.selectedclass){
+
+    }
+    let data = {}
+    console.log(req.body.selectedclass);
+    if (req.body.selectedclass !=null){
+        data =  {
+            'roles':student[0]._id,
+            'class':req.body.selectedclass
+        
+        }
+    }else{
+       data =  {
+            'roles':student[0]._id
+        
+        }
+    }
+    numberOfStudentUsers=User.countDocuments(data,(err,countdoc)=>{
         console.log(countdoc);
     
     console.log('THE COINT IS');
-    // console.log(numberOfStudentUsers);
+    console.log(req.body);
 
     const position = new Position({
         name:req.body.name,
         noOfUsers:countdoc,
-        noUsersVoted:0
+        noUsersVoted:0,
+
+        studentclass:req.body.selectedclass
     })
 
 

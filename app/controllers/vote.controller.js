@@ -58,10 +58,11 @@ exports.newVote = (req, res) => {
           console.log("Error: " + err);
         });
         cand(x)
-        return res.status(200).send({"message":"You Have voted!!"});
     }});
    
   });
+
+  return res.status(200).send({"message":"You Have voted!!"});
 };
 
 function cand(x){

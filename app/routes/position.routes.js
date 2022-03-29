@@ -11,6 +11,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/positions", controller.getPostion)
+  app.post("/api/specpositions", controller.getspecPostion)
   app.get("/api/explicitpositions/", controller.explicitgetPostion)
   // app.post("/api/new/positions",[authJwt.verifyToken,authJwt.isAdmin,verifyPosition.checkForExistingPostion],controller.createPosition);
   app.post("/api/new/positions",[verifyPosition.checkForExistingPostion],controller.createPosition);

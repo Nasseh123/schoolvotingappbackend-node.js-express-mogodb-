@@ -11,6 +11,7 @@ exports.signup = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     imageUrl:req.body.imageUrl,
+    class:req.body.studentclasses,
     password: bcrypt.hashSync(req.body.password, 8)
   });
 
@@ -102,7 +103,8 @@ exports.signin = (req, res) => {
         email: user.email,
         roles: authorities,
         accessToken: token,
-        votingStatus:user.votingStatus
+        votingStatus:user.votingStatus,
+        class:user.class
       });
     });
 };
@@ -120,5 +122,19 @@ exports.getusers = (req, res) => {
       res.status(200).send({user:user})
   })
 }
+
+exports.deleteUser= (req, res)=>{
+  console.log(req.body);
+  User.deleteOne({ _id: req.body._id },(err,deletedres)=>{
+      if (err){
+          res.status(500).send({message:err});
+      }else{
+          console.log(deletedres);
+          res.status(200).send({'message':"User removed Succesfully."});
+      }
+  })
+         
+       
+};
 // 9616353255
 // ICT1204B

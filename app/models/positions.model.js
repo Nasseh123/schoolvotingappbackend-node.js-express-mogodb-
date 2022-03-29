@@ -8,7 +8,12 @@ const Positions = mongoose.model(
     noUsersVoted:{
       type:Number,
       default: 0
-    },
+    }    ,
+    studentclass:
+    {
+      type:mongoose.Schema.Types.ObjectID,
+      ref:"StudentClass"
+  },
     status:{
       type:Boolean,
       default: true

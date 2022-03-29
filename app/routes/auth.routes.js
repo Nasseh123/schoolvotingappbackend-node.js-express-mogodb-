@@ -25,4 +25,6 @@ module.exports = function(app) {
   app.post("/api/auth/signin", controller.signin);
 
   app.get("/api/users/all", controller.getusers);
+
+  app.post("/api/delete-user",[],controller.deleteUser);
 };
